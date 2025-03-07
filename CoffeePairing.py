@@ -60,15 +60,41 @@ new_pairs_found = False
 
 # try creating new pairing until successful 
 # IMPLEMENT USER INPUT GROUP SIZE AND RANDOM ASSIGNMENT (CHECK IF ALSO RANDOM WITH BIGGER GROUPS AND MORE PEOPLE)
-#group_size = int(input("What size do you want the group to be? Please give an integer number between 2 and 10: "))
-group_size = 6
-tries = 0
-End = False
-while not new_pairs_found:   # to do: add a maximum number of tries
-    tries += 1
-    # if odd number of participants, create one triple, then pairs
-    if len(nparticipants)%2 != 0:
+max_group_size = 14
+min_group_size = 2
+#group_size = int(input(f"What size do you want the group to be? Please give an integer number between {min_group_size} and {max_group_size}: "))
+group_size = 10
+
+if group_size == len(nparticipants)-1:
+    group_size = len(nparticipants)
+    
+else:
+
+    if group_size>max_group_size:
+        print(f"The entered group size of {group_size} people is too large! The max group size is {max_group_size} people")
+        group_size = max_group_size
         
+    elif group_size<min_group_size:
+        print(f"The entered group size of {group_size} people is too small! The min group size is {min_group_size} people")
+        group_size = min_group_size
+        
+    elif group_size>len(nparticipants):
+        print(f"The entered group size of {group_size} people is too large for the number of people who signed up! The max group size is {len(nparticipants)} people")
+        group_size = len(nparticipants)  
+      
+    else:
+        print(f"The entered group size of {group_size} people is confirmed")
+
+print(f"Number of participants: {len(nparticipants)}")
+print(f"Goup size: {group_size}")
+
+tries = 0  #Number of tries to find new groups 
+End = False
+while not new_pairs_found:  
+    tries += 1
+    # if odd number of participants and group_size is even (or vice versa), create one triple, remaining groups have group_size
+    if len(nparticipants)%2 != 0 and group_size%2 == 0 or len(nparticipants)%2 == 0 and group_size%2 != 0 :
+        print("In first loop")
         # take three random participants from list of participants
         p1 = random.choice(nparticipants)
         nparticipants.remove(p1)
@@ -87,24 +113,50 @@ while not new_pairs_found:   # to do: add a maximum number of tries
         npairs.add(tuple(plist))
 
   
-    # while still participants left to pair...
-    while len(nparticipants) > 0:
-
-        # take two random participants from list of participants
+    # while still participants left to group in group_size...
+    while len(nparticipants) >= group_size:
+        
+        plist = []
+        for persons in range(group_size):
+            p = random.choice(nparticipants)
+            nparticipants.remove(p)
+            plist.append(p)
+        plist.sort()
+        npairs.add(tuple(plist))
+        
+    print(len(nparticipants))    
+    if len(nparticipants) == 2:
+        print("In 3rd loop")
+        # take three random participants from list of participants
         p1 = random.choice(nparticipants)
         nparticipants.remove(p1)
     
         p2 = random.choice(nparticipants)
         nparticipants.remove(p2)
-                
+        
         # create alphabetically sorted list of participants
         plist = [p1, p2]
         plist.sort()
                         
         # add alphabetically sorted list to set of pairs
         npairs.add(tuple(plist))
+            
+    
+#        # take group_size random participants from list of participants   OLD CODE
+#        p1 = random.choice(nparticipants)
+#        nparticipants.remove(p1)
+#    
+#        p2 = random.choice(nparticipants)
+#        nparticipants.remove(p2)
+#                
+#        # create alphabetically sorted list of participants
+#        plist = [p1, p2]
+#        plist.sort()
+#                        
+#        # add alphabetically sorted list to set of pairs
+#        npairs.add(tuple(plist))
+      
 
- 
     # check if all new pairs are indeed new, else reset
     if npairs.isdisjoint(opairs):
         new_pairs_found = True
