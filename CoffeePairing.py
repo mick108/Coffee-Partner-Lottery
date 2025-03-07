@@ -60,11 +60,14 @@ new_pairs_found = False
 
 # try creating new pairing until successful 
 # IMPLEMENT USER INPUT GROUP SIZE AND RANDOM ASSIGNMENT (CHECK IF ALSO RANDOM WITH BIGGER GROUPS AND MORE PEOPLE)
-group_size = int(input("What size do you want the group to be? Please give an integer number between 2 and 10: "))
+#group_size = int(input("What size do you want the group to be? Please give an integer number between 2 and 10: "))
+group_size = 6
+tries = 0
+End = False
 while not new_pairs_found:   # to do: add a maximum number of tries
-  
+    tries += 1
     # if odd number of participants, create one triple, then pairs
-    if len(participants)%2 != 0:
+    if len(nparticipants)%2 != 0:
         
         # take three random participants from list of participants
         p1 = random.choice(nparticipants)
@@ -108,61 +111,67 @@ while not new_pairs_found:   # to do: add a maximum number of tries
     else:
         npairs = set()
         nparticipants = copy.deepcopy(participants)
+        
+    if tries > 100:
+        print("No new group cominations possible. Please clear 'All pairs' document or add new participants!")
+        End = True
+        break
 
-
-# assemble output for printout
-# PRINT GROUPS ON SCREEN
-# MSG TO GROUP IN INDIVIDUAL TXT FILES; INCLUDING CONVERSATION STARTER (SEND OUT BY MAIL)
-output_string = ""
-
-output_string += "------------------------\n"
-output_string += "Today's coffee partners:\n"
-output_string += "------------------------\n"
-
-for pair in npairs:
-    pair = list(pair)
-    output_string += "* "
-    for i in range(0,len(pair)):
-        name_email_pair = f"{formdata[formdata[header_email] == pair[i]].iloc[0][header_name]} ({pair[i]})"
-        if i < len(pair)-1:
-            output_string += name_email_pair + ", "
-        else:
-            output_string += name_email_pair + "\n"
+if not End:
+    # assemble output for printout
+    # PRINT GROUPS ON SCREEN
+    # MSG TO GROUP IN INDIVIDUAL TXT FILES; INCLUDING CONVERSATION STARTER (SEND OUT BY MAIL)
+    output_string = ""
     
-# write output to console
-print(output_string)
+    output_string += "------------------------\n"
+    output_string += "Today's coffee partners:\n"
+    output_string += "------------------------\n"
 
-# write output into text file for later use
-with open(new_pairs_txt, "wb") as file:
-    file.write(output_string.encode("utf8"))
-
-# write new pairs into CSV file (for e.g. use in MailMerge)
-with open(new_pairs_csv, "w") as file:
-    header = ["name1", "email1", "name2", "email2", "name3", "email3"]
-    file.write(DELIMITER.join(header) + "\n")
     for pair in npairs:
         pair = list(pair)
+        output_string += "* "
         for i in range(0,len(pair)):
-            name_email_pair = f"{formdata[formdata[header_email] == pair[i]].iloc[0][header_name]}{DELIMITER} {pair[i]}"
+            name_email_pair = f"{formdata[formdata[header_email] == pair[i]].iloc[0][header_name]} ({pair[i]})"
             if i < len(pair)-1:
-                file.write(name_email_pair + DELIMITER + " ")
+                output_string += name_email_pair + ", "
             else:
-                file.write(name_email_pair + "\n")
-            
-# append pairs to history file
-if os.path.exists(all_pairs_csv):
-    mode = "a"
-else:
-    mode = "w"
+                output_string += name_email_pair + "\n"
+        
+    # write output to console
+    print(output_string)
+    
+    # write output into text file for later use
+    with open(new_pairs_txt, "wb") as file:
+        file.write(output_string.encode("utf8"))
+    
+    # write new pairs into CSV file (for e.g. use in MailMerge)
+    with open(new_pairs_csv, "w") as file:
+        header = ["name1", "email1", "name2", "email2", "name3", "email3"]
+        file.write(DELIMITER.join(header) + "\n")
+        for pair in npairs:
+            pair = list(pair)
+            for i in range(0,len(pair)):
+                name_email_pair = f"{formdata[formdata[header_email] == pair[i]].iloc[0][header_name]}{DELIMITER} {pair[i]}"
+                if i < len(pair)-1:
+                    file.write(name_email_pair + DELIMITER + " ")
+                else:
+                    file.write(name_email_pair + "\n")
+                
+    # append pairs to history file
+    if os.path.exists(all_pairs_csv):
+        mode = "a"
+    else:
+        mode = "w"
+    
+    with open(all_pairs_csv, mode) as file:
+        for pair in npairs:
+            pair = list(pair)
+            for i in range(0,len(pair)):
+                if i < len(pair)-1:
+                    file.write(pair[i] + DELIMITER)
+                else:
+                    file.write(pair[i] + "\n")
 
-with open(all_pairs_csv, mode) as file:
-    for pair in npairs:
-        pair = list(pair)
-        for i in range(0,len(pair)):
-            if i < len(pair)-1:
-                file.write(pair[i] + DELIMITER)
-            else:
-                file.write(pair[i] + "\n")
 
 
              
