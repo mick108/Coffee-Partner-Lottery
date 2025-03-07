@@ -1,10 +1,18 @@
 import pandas as pd
-import csv
 import random
 import copy
 import os
 
+
+# WRITE INSTRUCTIONS TO IMPORT CSV
+
+# IMPORT A RANDOM CONVERSATION STARTER (FROM ONLINE FILE +/ WHICH WAS NOT USED BEFORE)
+
+import csv
+
+
 # path to the CSV files with participant data
+# IMPLEMENT NEW CSV FILE (IMPORT FROM INTERNET)
 participants_csv = "Coffee Partner Lottery participants.csv"
 
 # header names in the CSV file (name and e-mail of participants)
@@ -50,7 +58,8 @@ nparticipants = copy.deepcopy(participants)
 # Boolean flag to check if new pairing has been found
 new_pairs_found = False
 
-# try creating new pairing until successful
+# try creating new pairing until successful 
+# IMPLEMENT USER INPUT GROUP SIZE AND RANDOM ASSIGNMENT (CHECK IF ALSO RANDOM WITH BIGGER GROUPS AND MORE PEOPLE)
 while not new_pairs_found:   # to do: add a maximum number of tries
   
     # if odd number of participants, create one triple, then pairs
@@ -101,6 +110,8 @@ while not new_pairs_found:   # to do: add a maximum number of tries
 
 
 # assemble output for printout
+# PRINT GROUPS ON SCREEN
+# MSG TO GROUP IN INDIVIDUAL TXT FILES; INCLUDING CONVERSATION STARTER (SEND OUT BY MAIL)
 output_string = ""
 
 output_string += "------------------------\n"
@@ -136,7 +147,7 @@ with open(new_pairs_csv, "w") as file:
                 file.write(name_email_pair + DELIMITER + " ")
             else:
                 file.write(name_email_pair + "\n")
-                
+            
 # append pairs to history file
 if os.path.exists(all_pairs_csv):
     mode = "a"
