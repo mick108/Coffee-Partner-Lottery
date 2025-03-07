@@ -13,11 +13,17 @@ import csv
 
 # path to the CSV files with participant data
 # IMPLEMENT NEW CSV FILE (IMPORT FROM INTERNET)
-participants_csv = "Coffee Partner Lottery participants.csv"
+sheet_id = "2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u"
+url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u/pub?output=csv"
+
+participants_csv = pd.read_csv(url)
+print(participants_csv)
+
+# participants_csv = "Coffee Partner Lottery participants.csv" # Replace this line with the import from internet
 
 # header names in the CSV file (name and e-mail of participants)
-header_name = "Your name:"
-header_email = "Your e-mail:"
+# header_name = "Your name:"
+# header_email = "Your e-mail:"
 
 # path to TXT file that stores the pairings of this round
 new_pairs_txt = "Coffee Partner Lottery new pairs.txt"
