@@ -6,13 +6,14 @@ import os
 
 # WRITE INSTRUCTIONS TO IMPORT CSV
 # INSTRUCTIONS ON WHERE TO FIND THE SIGN UP FORM
-link = "this form"
 url_form = "https://forms.gle/W8XpQSZdBfpMQmij6"
 
-print(f"Welcome to the coffee meeting pairing. Please fill out the form in the link below to sign up for the next meeting ({url_form})")
+print(f"Welcome to the program for the coffee meeting pairing. To let people participate in the meetings, make sure they sign up through this form ({url_form})")
 
 # INSTRUCTIONS ON HOW TO DOWNLOAD THE CSV FILE FROM THE GOOGLE FORM (CHANGE IF WE MANAGE TO IMPORT DIRECTLY FROM INTERNET)
-print("")
+print("To run the program, the csv file with the names and emails of the participants needs to be downloaded. To do so, go to the google form and in the 'responses' tab, download the responses as a csv file.")
+print("Make sure you save the csv file in the same folder as this program, otherwise the program will not be able to access it.")
+print("Also make sure that the names in the csv file are stored in a column with the header 'Name', and the emails under 'E-mail'.")
 
 # IMPORT A RANDOM CONVERSATION STARTER (FROM ONLINE FILE +/ WHICH WAS NOT USED BEFORE)
 
@@ -30,7 +31,7 @@ import csv
 
 # path to the CSV files with participant data
 # FROM DOWNLOADED CSV
-participants_csv = "Coffee meeting form.csv" # Replace this line with the import from internet
+participants_csv = "Coffee meeting form.csv" # REPLACE THIS LINE WITH THE IMPORT FROM INTERNET PART IF THAT WORKS
 
 # header names in the CSV file (name and e-mail of participants)
 header_name = "Name"
