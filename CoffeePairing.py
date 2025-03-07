@@ -5,25 +5,36 @@ import os
 
 
 # WRITE INSTRUCTIONS TO IMPORT CSV
+# INSTRUCTIONS ON WHERE TO FIND THE SIGN UP FORM
+link = "this form"
+url_form = "https://forms.gle/W8XpQSZdBfpMQmij6"
+
+print(f"Welcome to the coffee meeting pairing. Please fill out the form in the link below to sign up for the next meeting ({url_form})")
+
+# INSTRUCTIONS ON HOW TO DOWNLOAD THE CSV FILE FROM THE GOOGLE FORM (CHANGE IF WE MANAGE TO IMPORT DIRECTLY FROM INTERNET)
+print("")
 
 # IMPORT A RANDOM CONVERSATION STARTER (FROM ONLINE FILE +/ WHICH WAS NOT USED BEFORE)
 
 import csv
 
 
+
+# IMPLEMENT NEW CSV FILE 
+# (IMPORT FROM INTERNET)
+# sheet_id = "2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u"
+# url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u/pub?output=csv"
+
+# participants_csv = pd.read_csv(url)
+# print(participants_csv)
+
 # path to the CSV files with participant data
-# IMPLEMENT NEW CSV FILE (IMPORT FROM INTERNET)
-sheet_id = "2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u"
-url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u/pub?output=csv"
-
-participants_csv = pd.read_csv(url)
-print(participants_csv)
-
-# participants_csv = "Coffee Partner Lottery participants.csv" # Replace this line with the import from internet
+# FROM DOWNLOADED CSV
+participants_csv = "Coffee meeting form.csv" # Replace this line with the import from internet
 
 # header names in the CSV file (name and e-mail of participants)
-# header_name = "Your name:"
-# header_email = "Your e-mail:"
+header_name = "Name"
+header_email = "E-mail"
 
 # path to TXT file that stores the pairings of this round
 new_pairs_txt = "Coffee Partner Lottery new pairs.txt"
