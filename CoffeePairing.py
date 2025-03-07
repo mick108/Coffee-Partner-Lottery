@@ -60,6 +60,7 @@ new_pairs_found = False
 
 # try creating new pairing until successful 
 # IMPLEMENT USER INPUT GROUP SIZE AND RANDOM ASSIGNMENT (CHECK IF ALSO RANDOM WITH BIGGER GROUPS AND MORE PEOPLE)
+group_size = int(input("What size do you want the group to be? Please give an integer number between 2 and 10: "))
 while not new_pairs_found:   # to do: add a maximum number of tries
   
     # if odd number of participants, create one triple, then pairs
