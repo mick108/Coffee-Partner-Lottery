@@ -27,6 +27,11 @@ new_pairs_csv = "Coffee Partner Lottery new pairs.csv"
 
 # path to CSV file that stores all pairings (to avoid repetition)
 all_pairs_csv = "Coffee Partner Lottery all pairs.csv"
+
+# path to csv file that stores the messages sent to all groups
+msg_to_groups = "Message to groups.txt"
+
+
         
 # init set of old pairs
 opairs = set()
@@ -112,6 +117,34 @@ while not new_pairs_found:   # to do: add a maximum number of tries
 # assemble output for printout
 # PRINT GROUPS ON SCREEN
 # MSG TO GROUP IN INDIVIDUAL TXT FILES; INCLUDING CONVERSATION STARTER (SEND OUT BY MAIL)
+
+Conversation_Starter = "This is the conversation starter of this round"
+
+                
+with open(msg_to_groups, "w") as file:  
+    #header = ["name1", "email1", "name2", "email2", "name3", "email3"]    
+    #file.write(DELIMITER.join(header) + "\n")
+    for pair in npairs:
+        pair = list(pair)
+        for i in range(0,len(pair)):
+            #name_email_pair = f"{formdata[formdata[header_email] == pair[i]].iloc[0][header_name]}{DELIMITER} {pair[i]}"   #This outputs name + email
+            name_email_pair = formdata[formdata[header_email] == pair[i]].iloc[0][header_name]                              #This outputs only the name)
+            if i ==0:
+                file.write("Dear ")
+                file.write(name_email_pair)
+            elif i < len(pair)-1 :
+                file.write(DELIMITER + " dear " + name_email_pair)
+            else:
+                file.write(" and dear " + name_email_pair + "\n")
+                if len(pair) == 2:
+                    X = "The"
+                else:
+                    X = "All"
+                file.write(f"{X} {len(pair)} of you have been put together in today's group. The conversation starter is: {Conversation_Starter}\n")
+                file.write("------------------------------------------------------------------------------------------------------------------------------------------------------\n")
+                
+
+
 output_string = ""
 
 output_string += "------------------------\n"
@@ -147,6 +180,7 @@ with open(new_pairs_csv, "w") as file:
                 file.write(name_email_pair + DELIMITER + " ")
             else:
                 file.write(name_email_pair + "\n")
+
             
 # append pairs to history file
 if os.path.exists(all_pairs_csv):
