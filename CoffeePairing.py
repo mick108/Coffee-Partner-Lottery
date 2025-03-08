@@ -13,15 +13,14 @@ print(f"Welcome to the program for the coffee meeting pairing. To let people par
 # INSTRUCTIONS ON HOW TO DOWNLOAD THE CSV FILE FROM THE GOOGLE FORM (CHANGE IF WE MANAGE TO IMPORT DIRECTLY FROM INTERNET)
 print("To run the program, a csv file with the names and emails of the participants needs to be downloaded. To do so, go to the google form and in the 'responses' tab, download the responses as a csv file.")
 print("Make sure you save the csv file in the same folder as this program, otherwise the program will not be able to access it.")
-print("Lastly, if this is not the first round of meetings and new participant signed up since the previous round, download the csv again.")
+print("Also make sure that the names in the csv file are stored in a column with the header 'Name', and the emails under 'E-mail'.")
+
 # (WE CAN ALSO MAKE THE PROGRAM STOP AUTOMATICALLY BUT I THINK WE HAVE TO PUT THE ENTIRE CODE IN A LOOP SO DIDN'T DO THAT NOW)
 input("If you have completed the steps above type 'start', if not, please stop the program and follow the instructions first.")
 
 # IMPORT A RANDOM CONVERSATION STARTER (FROM ONLINE FILE +/ WHICH WAS NOT USED BEFORE)
 
 import csv
-
-
 
 # IMPLEMENT NEW CSV FILE 
 # (IMPORT FROM INTERNET)
