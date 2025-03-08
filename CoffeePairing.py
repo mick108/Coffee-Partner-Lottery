@@ -10,6 +10,8 @@ import os
 
 import csv
 
+# (DON'T THINK THIS WILL SUFFICE AS IMPORT NEW USERS EVERY ROUND BUT IF WE MANAGE TO LINK THE ONLINE FILE IT WILL BE AUTOMATED)
+print("Lastly, if this is not the first round of meetings and new participant signed up since the previous round, download the csv again.")
 
 # path to the CSV files with participant data
 # IMPLEMENT NEW CSV FILE (IMPORT FROM INTERNET)
