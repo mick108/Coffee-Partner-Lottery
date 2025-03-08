@@ -16,7 +16,7 @@ print("Make sure you save the csv file in the same folder as this program, other
 print("Also make sure that the names in the csv file are stored in a column with the header 'Name', and the emails under 'E-mail'.")
 
 # (WE CAN ALSO MAKE THE PROGRAM STOP AUTOMATICALLY BUT I THINK WE HAVE TO PUT THE ENTIRE CODE IN A LOOP SO DIDN'T DO THAT NOW)
-input("If you have completed the steps above type 'start', if not, please stop the program and follow the instructions first.")
+# input("If you have completed the steps above type 'start', if not, please stop the program and follow the instructions first.")
 
 # IMPORT A RANDOM CONVERSATION STARTER (FROM ONLINE FILE +/ WHICH WAS NOT USED BEFORE)
 
@@ -24,15 +24,15 @@ import csv
 
 # IMPLEMENT NEW CSV FILE 
 # (IMPORT FROM INTERNET)
-# sheet_id = "2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u"
-# url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u/pub?output=csv"
+sheet_id = "2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u"
+url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u/pub?output=csv"
 
-# participants_csv = pd.read_csv(url)
-# print(participants_csv)
+participants_csv = pd.read_csv(url)
+print(participants_csv)
 
 # path to the CSV files with participant data
 # FROM DOWNLOADED CSV
-participants_csv = "Coffee meeting form.csv" # REPLACE THIS LINE WITH THE IMPORT FROM INTERNET PART IF THAT WORKS
+# participants_csv = "Coffee meeting form.csv" # REPLACE THIS LINE WITH THE IMPORT FROM INTERNET PART IF THAT WORKS
 
 # header names in the CSV file (name and e-mail of participants)
 header_name = "Name"
