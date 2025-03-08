@@ -1,5 +1,10 @@
 ------------------------
 Today's coffee partners:
 ------------------------
-* Alice Smith (alice.smith@email.com), Kim Baker (kim.baker@email.com)
-* Bob Smith (bob.smith@email.com), Eve Miller (eve.miller@email.com), John Doe (john.doe@email.com)
+* Bob Smith (bob.smith@email.com), Michelle Olivia (michelle.olivia@email.com)
+* Peter Mock (peter.mock@email.com), Thomas Edison (thomas.edison@email.com)
+* Elisa Gummerer (elisa.gummerer@email.com), Kim Baker (kim.baker@email.com), Ollie Buijs (ollie.buijs@email.com)
+* Julian Scholz (julian.scholz@email.com), Mark Gamper (mark.gamper@email.com)
+* Isaac Newton (isaac.newton@email.com), Mick den Ouden (mick.denouden@email.com)
+* Alice Smith (alice.smith@email.com), John Doe (john.doe@email.com)
+* Eve Miller (eve.miller@email.com), Hessel Roodenburg (hessel.roodenburg@email.com)
