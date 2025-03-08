@@ -60,36 +60,48 @@ new_pairs_found = False
 
 # try creating new pairing until successful 
 # IMPLEMENT USER INPUT GROUP SIZE AND RANDOM ASSIGNMENT (CHECK IF ALSO RANDOM WITH BIGGER GROUPS AND MORE PEOPLE)
-max_group_size = 14
+max_group_size = 15
 min_group_size = 2
-#group_size = int(input(f"What size do you want the group to be? Please give an integer number between {min_group_size} and {max_group_size}: "))
-group_size = 10
+#group_size = int(input(f"What size do you want the group to be? We try to consider your preferences. If not possible, the group size is changed. Please give an integer number between {min_group_size} and {max_group_size}: "))
+group_size = 14
+OG_group_size = True #Boolean used to see if the entered group size is used
+print(f"Entered group size: {group_size}")
 
-if group_size == len(nparticipants)-1:
-    group_size = len(nparticipants)
-    
+# resets the group size if necessary
+
+if group_size >= min_group_size and group_size <= max_group_size:
+    if group_size == len(nparticipants)-1:
+        if len(nparticipants) > max_group_size:
+            group_size = len(nparticipants)-2
+            OG_group_size = False
+        else:
+            group_size = len(nparticipants)
+            OG_group_size = False
+        
+elif group_size < min_group_size:
+    group_size = min_group_size
+    OG_group_size = False
+    if group_size == len(nparticipants)-1:
+        group_size = len(nparticipants)
+
+elif group_size > max_group_size:
+    group_size = max_group_size
+    OG_group_size = False
+    if group_size == len(nparticipants)-1:
+        group_size = len(nparticipants) -2
+
+
+# Checks if original group size is used  
+if OG_group_size:
+    print(f"The entered group size of {group_size} people is confirmed")
 else:
-
-    if group_size>max_group_size:
-        print(f"The entered group size of {group_size} people is too large! The max group size is {max_group_size} people")
-        group_size = max_group_size
-        
-    elif group_size<min_group_size:
-        print(f"The entered group size of {group_size} people is too small! The min group size is {min_group_size} people")
-        group_size = min_group_size
-        
-    elif group_size>len(nparticipants):
-        print(f"The entered group size of {group_size} people is too large for the number of people who signed up! The max group size is {len(nparticipants)} people")
-        group_size = len(nparticipants)  
-      
-    else:
-        print(f"The entered group size of {group_size} people is confirmed")
+    print(f"The group size has been changed to {group_size} people!")
 
 print(f"Number of participants: {len(nparticipants)}")
 print(f"Goup size: {group_size}")
 
 tries = 0  #Number of tries to find new groups 
-End = False
+End = False # Boolean used to break out of the loop if tries exceeds maximum
 while not new_pairs_found:  
     tries += 1
     # if odd number of participants and group_size is even (or vice versa), create one triple, remaining groups have group_size
@@ -142,28 +154,14 @@ while not new_pairs_found:
         npairs.add(tuple(plist))
             
     
-#        # take group_size random participants from list of participants   OLD CODE
-#        p1 = random.choice(nparticipants)
-#        nparticipants.remove(p1)
-#    
-#        p2 = random.choice(nparticipants)
-#        nparticipants.remove(p2)
-#                
-#        # create alphabetically sorted list of participants
-#        plist = [p1, p2]
-#        plist.sort()
-#                        
-#        # add alphabetically sorted list to set of pairs
-#        npairs.add(tuple(plist))
-      
-
     # check if all new pairs are indeed new, else reset
     if npairs.isdisjoint(opairs):
         new_pairs_found = True
     else:
         npairs = set()
         nparticipants = copy.deepcopy(participants)
-        
+    
+    #if the loop is run through more than 100 times, then it is assumed that there are no more possible group divisions which have not been made before
     if tries > 100:
         print("No new group cominations possible. Please clear 'All pairs' document or add new participants!")
         End = True
