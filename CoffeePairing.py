@@ -6,18 +6,37 @@ import os
 
 # WRITE INSTRUCTIONS TO IMPORT CSV
 
+# INSTRUCTIONS ON WHERE TO FIND THE SIGN UP FORM
+url_form = "https://forms.gle/W8XpQSZdBfpMQmij6"
+print(f"Welcome to the program for the coffee meeting pairing. To let people participate in the meetings, make sure they sign up through this form ({url_form})")
+
+# INSTRUCTIONS ON HOW TO DOWNLOAD THE CSV FILE FROM THE GOOGLE FORM (CHANGE IF WE MANAGE TO IMPORT DIRECTLY FROM INTERNET)
+print("To run the program, a csv file with the names and emails of the participants needs to be downloaded. To do so, go to the google form and in the 'responses' tab, download the responses as a csv file.")
+print("Make sure you save the csv file in the same folder as this program, otherwise the program will not be able to access it.")
+print("Also make sure that the names in the csv file are stored in a column with the header 'Name', and the emails under 'E-mail'.")
+
+# (WE CAN ALSO MAKE THE PROGRAM STOP AUTOMATICALLY BUT I THINK WE HAVE TO PUT THE ENTIRE CODE IN A LOOP SO DIDN'T DO THAT NOW)
+input("If you have completed the steps above type 'start', if not, please stop the program and follow the instructions first.")
+
 # IMPORT A RANDOM CONVERSATION STARTER (FROM ONLINE FILE +/ WHICH WAS NOT USED BEFORE)
 
 import csv
 
+# IMPLEMENT NEW CSV FILE 
+# (IMPORT FROM INTERNET)
+# sheet_id = "2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u"
+# url = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRFAUb3UXMtBLyRIG-34OdQOod1WdQEceKBohQCpq5kowvdZeWsBKSLonZRG3oTcehGtqQTLlTAFE_u/pub?output=csv"
+
+# participants_csv = pd.read_csv(url)
+# print(participants_csv)
 
 # path to the CSV files with participant data
-# IMPLEMENT NEW CSV FILE (IMPORT FROM INTERNET)
-participants_csv = "Coffee Partner Lottery participants.csv"
+# FROM DOWNLOADED CSV
+participants_csv = "Coffee meeting form.csv" # REPLACE THIS LINE WITH THE IMPORT FROM INTERNET PART IF THAT WORKS
 
 # header names in the CSV file (name and e-mail of participants)
-header_name = "Your name:"
-header_email = "Your e-mail:"
+header_name = "Name"
+header_email = "E-mail"
 
 # path to TXT file that stores the pairings of this round
 new_pairs_txt = "Coffee Partner Lottery new pairs.txt"
