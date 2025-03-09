@@ -15,6 +15,9 @@ print("To run the program, a csv file with the names and emails of the participa
 print("Make sure you save the csv file in the same folder as this program, otherwise the program will not be able to access it.")
 print("Also make sure that the names in the csv file are stored in a column with the header 'Name', and the emails under 'E-mail'.")
 
+# (DON'T THINK THIS WILL SUFFICE AS IMPORT NEW USERS EVERY ROUND BUT IF WE MANAGE TO LINK THE ONLINE FILE IT WILL BE AUTOMATED)
+print("Lastly, if this is not the first round of meetings and new participant signed up since the previous round, download the csv again.")
+
 # (WE CAN ALSO MAKE THE PROGRAM STOP AUTOMATICALLY BUT I THINK WE HAVE TO PUT THE ENTIRE CODE IN A LOOP SO DIDN'T DO THAT NOW)
 input("If you have completed the steps above type 'start', if not, please stop the program and follow the instructions first.")
 
@@ -36,7 +39,6 @@ with open('conversation_starters.csv', 'r') as csvfile:
     header = next(csvreader) #skip the header row
     for row in csvreader:
         conversation_starters.append(row[1])
-
 
 # path to the CSV files with participant data
 # FROM DOWNLOADED CSV
