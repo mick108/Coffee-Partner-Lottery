@@ -5,11 +5,14 @@ import os
 
 
 # WRITE INSTRUCTIONS TO IMPORT CSV
-
 # IMPORT A RANDOM CONVERSATION STARTER (FROM ONLINE FILE +/ WHICH WAS NOT USED BEFORE)
-
 import csv
-
+conversation_starters = []
+with open('conversation_starters.csv', 'r') as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+    header = next(csvreader) #skip the header row
+    for row in csvreader:
+        conversation_starters.append(row[1])
 
 # path to the CSV files with participant data
 # IMPLEMENT NEW CSV FILE (IMPORT FROM INTERNET)
@@ -128,6 +131,13 @@ for pair in npairs:
         else:
             output_string += name_email_pair + "\n"
     
+    #this is to select a random conversation starter for each group
+    random_conversation_starters = random.choice(conversation_starters)
+    
+    #this is to add the random conversation starter to the output string
+    output_string += f"Conversation starter: {random_conversation_starters}\n\n"
+
+
 # write output to console
 print(output_string)
 
