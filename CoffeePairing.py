@@ -30,6 +30,14 @@ import csv
 # participants_csv = pd.read_csv(url)
 # print(participants_csv)
 
+conversation_starters = []
+with open('conversation_starters.csv', 'r') as csvfile:
+    csvreader = csv.reader(csvfile, delimiter=',')
+    header = next(csvreader) #skip the header row
+    for row in csvreader:
+        conversation_starters.append(row[1])
+
+
 # path to the CSV files with participant data
 # FROM DOWNLOADED CSV
 participants_csv = "Coffee meeting form.csv" # REPLACE THIS LINE WITH THE IMPORT FROM INTERNET PART IF THAT WORKS
@@ -137,7 +145,28 @@ while not new_pairs_found:   # to do: add a maximum number of tries
 # PRINT GROUPS ON SCREEN
 # MSG TO GROUP IN INDIVIDUAL TXT FILES; INCLUDING CONVERSATION STARTER (SEND OUT BY MAIL)
 
-Conversation_Starter = "This is the conversation starter of this round"
+
+output_string = ""
+
+output_string += "------------------------\n"
+output_string += "Today's coffee partners:\n"
+output_string += "------------------------\n"
+
+#this is to select a random conversation starter for each group
+random_conversation_starters = random.choice(conversation_starters)
+    
+for pair in npairs:
+    pair = list(pair)
+    output_string += "* "
+    for i in range(0,len(pair)):
+        name_email_pair = f"{formdata[formdata[header_email] == pair[i]].iloc[0][header_name]} ({pair[i]})"
+        if i < len(pair)-1:
+            output_string += name_email_pair + ", "
+        else:
+            output_string += name_email_pair + "\n"
+    
+    #this is to add the random conversation starter to the output string
+    output_string += f"Conversation starter: {random_conversation_starters}\n\n"
 
                 
 with open(msg_to_groups, "w") as file:  
@@ -159,27 +188,10 @@ with open(msg_to_groups, "w") as file:
                     X = "The"
                 else:
                     X = "All"
-                file.write(f"{X} {len(pair)} of you have been put together in today's group. The conversation starter is: {Conversation_Starter}\n")
+                file.write(f"{X} {len(pair)} of you have been put together in today's group. The conversation starter is: {random_conversation_starters}\n")
                 file.write("------------------------------------------------------------------------------------------------------------------------------------------------------\n")
                 
 
-
-output_string = ""
-
-output_string += "------------------------\n"
-output_string += "Today's coffee partners:\n"
-output_string += "------------------------\n"
-
-for pair in npairs:
-    pair = list(pair)
-    output_string += "* "
-    for i in range(0,len(pair)):
-        name_email_pair = f"{formdata[formdata[header_email] == pair[i]].iloc[0][header_name]} ({pair[i]})"
-        if i < len(pair)-1:
-            output_string += name_email_pair + ", "
-        else:
-            output_string += name_email_pair + "\n"
-    
 # write output to console
 print(output_string)
 
@@ -221,3 +233,22 @@ with open(all_pairs_csv, mode) as file:
 # print finishing message
 print()
 print("Job done.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
