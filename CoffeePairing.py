@@ -9,6 +9,7 @@ import os
 # INSTRUCTIONS ON WHERE TO FIND THE SIGN UP FORM
 url_form = "https://forms.gle/W8XpQSZdBfpMQmij6"
 print(f"Welcome to the program for the coffee meeting pairing. To let people participate in the meetings, make sure they sign up through this form ({url_form})")
+print("------------------------\n")
 
 # INSTRUCTIONS ON HOW TO DOWNLOAD THE CSV FILE FROM THE GOOGLE FORM (CHANGE IF WE MANAGE TO IMPORT DIRECTLY FROM INTERNET)
 print("To run the program, a csv file with the names and emails of the participants needs to be downloaded. To do so, go to the google form and in the 'responses' tab, download the responses as a csv file.")
@@ -17,6 +18,7 @@ print("Also make sure that the names in the csv file are stored in a column with
 
 # (DON'T THINK THIS WILL SUFFICE AS IMPORT NEW USERS EVERY ROUND BUT IF WE MANAGE TO LINK THE ONLINE FILE IT WILL BE AUTOMATED)
 print("Lastly, if this is not the first round of meetings and new participant signed up since the previous round, download the csv again.")
+print("------------------------\n")
 
 # (WE CAN ALSO MAKE THE PROGRAM STOP AUTOMATICALLY BUT I THINK WE HAVE TO PUT THE ENTIRE CODE IN A LOOP SO DIDN'T DO THAT NOW)
 #input("If you have completed the steps above type 'start', if not, please stop the program and follow the instructions first.")
@@ -97,7 +99,7 @@ new_pairs_found = False
 # IMPLEMENT USER INPUT GROUP SIZE AND RANDOM ASSIGNMENT (CHECK IF ALSO RANDOM WITH BIGGER GROUPS AND MORE PEOPLE)
 max_group_size = 13
 min_group_size = 2
-group_size = int(input(f"What size do you want the group to be? We try to consider your preferences. If not possible, the group size is changed. Please give an integer number between {min_group_size} and {max_group_size}: "))
+group_size = int(input(f"What size do you want the groups to be? We try to consider your preferences. If not possible, the group size is changed automatically. Please give an integer number between {min_group_size} and {max_group_size}: "))
 #group_size = 14
 OG_group_size = True #Boolean used to see if the entered group size is used
 print(f"Entered group size: {group_size}")
@@ -195,7 +197,7 @@ while not new_pairs_found:
     
     #if the loop is run through more than 100 times, then it is assumed that there are no more possible group divisions which have not been made before
     if tries > 100:
-        print("No new group cominations possible. Please clear 'All pairs' document or add new participants!")
+        print("No new group combinations possible. Please clear 'All pairs' document or add new participants!")
         End = True
         break
 
